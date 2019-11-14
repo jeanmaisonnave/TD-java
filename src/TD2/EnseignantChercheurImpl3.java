@@ -1,15 +1,17 @@
-import perso.*;
-import java.util.Vector;
+package TD2;
 
-public class EnseignantChercheurImpl2 extends Enseignant implements Chercheur {
+import TD1.perso.*;
+import java.util.HashMap;
 
-    private Vector<Publication> publications = new Vector<>();
+public class EnseignantChercheurImpl3 extends Enseignant implements Chercheur {
 
-    public EnseignantChercheurImpl2(String nom, int age, int heures) {
+    private HashMap<Integer,Publication> publications = new HashMap<Integer,Publication>();
+
+    public EnseignantChercheurImpl3(String nom, int age, int heures) {
         super(nom, age, heures);
     }
 
-    public EnseignantChercheurImpl2(String nom, int age, int heures, Vector<Publication> publications) {
+    public EnseignantChercheurImpl3(String nom, int age, int heures, HashMap<Integer,Publication> publications) {
         super(nom, age, heures);
         this.publications = publications;
     }
@@ -17,15 +19,15 @@ public class EnseignantChercheurImpl2 extends Enseignant implements Chercheur {
     @Override
     public void ajouterPublication(Publication p) {
         if (publications.size() <= 10) {
-            publications.add(p);
+            publications.put(publications.size(),p);
         }
     }
 
     @Override
     public String listerPublications() {
         String r = "";
-        for(Publication p : publications){
-            r += p.toString() + ",";
+        for (int i = 0; i < publications.size(); i++) {
+            r += publications.get(i).toString() + ",";
         }
         if (r.length() > 0){
             r = r.substring(0, r.length() - 1);
@@ -44,11 +46,11 @@ public class EnseignantChercheurImpl2 extends Enseignant implements Chercheur {
         return r;
     }
 
-    public Vector<Publication> getPublications() {
+    public HashMap<Integer,Publication> getPublications() {
         return publications;
     }
 
-    public void setPublications(Vector<Publication> publications) {
+    public void setPublications(HashMap<Integer,Publication> publications) {
         this.publications = publications;
     }
 }

@@ -1,4 +1,4 @@
-package perso;
+package TD1.perso;
 
 public class Etudiant extends Personne {
     private float note;

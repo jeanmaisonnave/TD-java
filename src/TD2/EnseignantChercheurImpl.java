@@ -1,4 +1,6 @@
-import perso.*;
+package TD2;
+
+import TD1.perso.*;
 import java.util.ArrayList;
 
 public class EnseignantChercheurImpl extends Enseignant implements Chercheur {

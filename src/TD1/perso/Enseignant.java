@@ -1,4 +1,4 @@
-package perso;
+package TD1.perso;
 
 public class Enseignant extends Personne {
     private  int heures;

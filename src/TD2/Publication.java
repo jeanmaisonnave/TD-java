@@ -1,3 +1,5 @@
+package TD2;
+
 public class Publication {
     private String titre;
     private int annee;

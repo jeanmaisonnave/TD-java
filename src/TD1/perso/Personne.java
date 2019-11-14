@@ -1,4 +1,4 @@
-package perso;
+package TD1.perso;
 
 public class Personne {
     private String nom;

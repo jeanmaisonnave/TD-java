@@ -1,4 +1,5 @@
-import perso.*;
+package TD2;
+
 public class HelloChercheur {
     public static void main(String[] args) {
         //Test implémentation avec ArrayList
