@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class Comunica extends JFrame {
@@ -28,7 +29,7 @@ public class Comunica extends JFrame {
         Insets insets = getInsets();
 
         lmessend = new JLabel("message to send");
-        lmessend.setBounds(0+insets.left,25+insets.top,lmessend.getPreferredSize().width,lmessend.getPreferredSize().height);
+        lmessend.setBounds(insets.left,25+insets.top,lmessend.getPreferredSize().width,lmessend.getPreferredSize().height);
         add(lmessend);
 
         textToSend = new JTextArea(15,10);
@@ -39,36 +40,31 @@ public class Comunica extends JFrame {
 
         bSend=new JButton("send");
         bSend.setBounds(200+insets.left,50+insets.top,bSend.getPreferredSize().width, bSend.getPreferredSize().height);
-        bSend.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    writer.write(textToSend.getText());
-                    System.out.println("Message sent : " + textToSend.getText());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
+        bSend.addActionListener(e -> {
+            try {
+                writer.write(textToSend.getText());
+                writer.close();
+                System.out.println("Message sent : " + textToSend.getText());
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
         });
         add(bSend);
 
         bReceiver=new JButton("receive");
-        bReceiver.setBounds(0+insets.left,50+insets.top,bReceiver.getPreferredSize().width, bReceiver.getPreferredSize().height);
-        bReceiver.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    textRec.setText(reader.readLine());
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                }
-                System.out.println("Message received : " + textRec.getText());
+        bReceiver.setBounds(insets.left,50+insets.top,bReceiver.getPreferredSize().width, bReceiver.getPreferredSize().height);
+        bReceiver.addActionListener(e -> {
+            try {
+                textRec.setText(reader.readLine());
+            } catch (IOException ex) {
+                ex.printStackTrace();
             }
+            System.out.println("Message received : " + textRec.getText());
         });
         add(bReceiver);
 
         lmessrec= new JLabel("received message");
-        lmessrec.setBounds(0+insets.left,125+insets.top,lmessend.getPreferredSize().width,lmessend.getPreferredSize().height);
+        lmessrec.setBounds(insets.left,125+insets.top,lmessend.getPreferredSize().width,lmessend.getPreferredSize().height);
         add(lmessrec);
 
         textRec = new JTextArea(15,10);
