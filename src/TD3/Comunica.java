@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Comunica extends JFrame {
     private BufferedWriter writer;
@@ -41,7 +42,12 @@ public class Comunica extends JFrame {
         bSend.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Message sent : " + textToSend.getText());
+                try {
+                    writer.write(textToSend.getText());
+                    System.out.println("Message sent : " + textToSend.getText());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
             }
         });
         add(bSend);
@@ -51,6 +57,11 @@ public class Comunica extends JFrame {
         bReceiver.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    textRec.setText(reader.readLine());
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 System.out.println("Message received : " + textRec.getText());
             }
         });
