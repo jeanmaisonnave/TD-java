@@ -4,10 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 public class Comunica extends JFrame {
     private BufferedWriter writer;
@@ -18,6 +15,14 @@ public class Comunica extends JFrame {
     private JLabel lmessend;
     private JTextArea textRec;
     private JTextArea textToSend;
+    private String pathA2B;
+    private String pathB2A;
+
+    public Comunica(String pathA2B, String pathB2A) {
+        this.pathA2B = pathA2B;
+        this.pathB2A = pathB2A;
+        initComponents();
+    }
 
     public Comunica(BufferedWriter writer, BufferedReader reader) {
         this.writer = writer;
@@ -42,11 +47,21 @@ public class Comunica extends JFrame {
         bSend.setBounds(200+insets.left,50+insets.top,bSend.getPreferredSize().width, bSend.getPreferredSize().height);
         bSend.addActionListener(e -> {
             try {
+                FileWriter fw = new FileWriter(pathA2B);
+                writer = new BufferedWriter(fw);
                 writer.write(textToSend.getText());
-                writer.close();
                 System.out.println("Message sent : " + textToSend.getText());
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+            finally {
+                if (writer !=null) {
+                    try {
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         });
         add(bSend);
@@ -55,9 +70,20 @@ public class Comunica extends JFrame {
         bReceiver.setBounds(insets.left,50+insets.top,bReceiver.getPreferredSize().width, bReceiver.getPreferredSize().height);
         bReceiver.addActionListener(e -> {
             try {
+                FileReader fw = new FileReader(pathB2A);
+                reader = new BufferedReader(fw);
                 textRec.setText(reader.readLine());
             } catch (IOException ex) {
                 ex.printStackTrace();
+            }
+            finally {
+                if (reader != null) {
+                    try {
+                        reader.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
             System.out.println("Message received : " + textRec.getText());
         });
