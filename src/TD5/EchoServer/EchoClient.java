@@ -1,4 +1,4 @@
-package TD5;
+package TD5.EchoServer;
 
 import java.io.*;
 import java.net.Socket;
