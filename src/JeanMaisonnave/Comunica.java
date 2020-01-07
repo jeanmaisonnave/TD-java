@@ -1,8 +1,10 @@
-package TD5;
+package JeanMaisonnave;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Comunica extends JFrame {
     private BufferedWriter writer;
@@ -75,26 +77,6 @@ public class Comunica extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         getContentPane().setLayout(new GridLayout(0,2));
         setVisible(true);
-
-        Readline rl = new Readline(this);
-        rl.run();
-
-    }
-
-    public BufferedReader getR() {
-        return r;
-    }
-
-    public void setR(BufferedReader r) {
-        this.r = r;
-    }
-
-    public BufferedWriter getW() {
-        return w;
-    }
-
-    public void setW(BufferedWriter w) {
-        this.w = w;
     }
 
     public BufferedWriter getWriter() {

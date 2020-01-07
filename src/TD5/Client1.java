@@ -27,7 +27,7 @@ public class Client1 {
             in = new BufferedReader(new InputStreamReader(socketReception.getInputStream()));
 
             Comunica mainWindow = new Comunica(out,in);
-            mainWindow.run();
+
         } catch (IOException e) {
             e.printStackTrace();
         }
