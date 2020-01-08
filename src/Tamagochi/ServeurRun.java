@@ -1,4 +1,4 @@
-package JeanMaisonnave;
+package Tamagochi;
 
 public class ServeurRun {
     public static void main(String[] args){

@@ -1,4 +1,4 @@
-package JeanMaisonnave;
+package Tamagochi;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
@@ -68,7 +68,7 @@ public class ClientFrame extends JFrame {
                 }
 
                 if (oldEtat != null) {
-                    if (!oldEtat.get("satiete").equals(etat.get("satitete"))) {
+                    if (!oldEtat.get("satiete").equals(etat.get("satiete"))) {
                         if (etat.get("satiete").equals("faim")) {
                             updateLogs("J'ai faim !");
                         } else if (etat.get("satiete").equals("repu")) {
@@ -79,12 +79,23 @@ public class ClientFrame extends JFrame {
                         }
                     }
 
-                    if (!oldEtat.get("lieu").equals(etat.get("lieu"))) {
-						if (etat.get("lieu").equals("table")){
-							updateLogs("");
-						}
+                    if (!oldEtat.get("emotion").equals(etat.get("emotion"))) {
+						if (etat.get("emotion").equals("content")){
+							updateLogs("Je suis content !");
+						}else if(etat.get("emotion").equals("mecontent")){
+						    updateLogs("Je suis mécontent !");
+                        }else {
+						    System.err.println("Erreur dans l'émotion du Tamagochi");
+						    System.exit(-1);
+                        }
+                    }
+
+                    if (!oldEtat.get("sante").equals(etat.get("sante"))
+                            && etat.get("sante").equals("mort")){
+                        updateLogs("Je suis mort !");
                     }
                 }
+
                 oldEtat = new HashMap<>(etat);
 
                 int a = Integer.parseInt(etat.get("age")) / 1000;

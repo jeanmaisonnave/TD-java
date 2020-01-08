@@ -1,4 +1,4 @@
-package JeanMaisonnave;
+package Tamagochi;
 
 import java.io.*;
 import java.net.Socket;

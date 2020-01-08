@@ -1,4 +1,4 @@
-package JeanMaisonnave;
+package Tamagochi;
 
 import javax.swing.*;
 import java.awt.*;
